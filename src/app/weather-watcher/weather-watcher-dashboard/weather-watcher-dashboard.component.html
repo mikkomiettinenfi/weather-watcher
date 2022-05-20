@@ -1,0 +1,41 @@
+<div id="chart-content">
+  <div class="chart-controls">
+    <div class="chart-control">
+      <mat-select placeholder="'Locations'" [(ngModel)]="selectedLocations" multiple>
+        <mat-option *ngFor="let location of locations" [value]="location">
+          {{ location.name }}
+        </mat-option>
+      </mat-select>
+    </div>
+
+    <div class="chart-control">
+      <mat-form-field appearance="fill">
+        <input matInput [matDatepicker]="picker"
+          [min]=""
+          [max]=""
+          [(ngModel)]="selectedDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker color="accent"></mat-datepicker>
+      </mat-form-field>
+    </div>
+  </div>
+
+  <div class="main-chart">
+    <app-chart
+      [weatherDataArray]="weatherData"
+      [dateFilter]="selectedDate">
+    </app-chart>
+  </div>
+
+  <div class="dashboard">
+    <div *ngFor="let data of weatherData" class="dashboard-chart-container">
+      <app-chart
+        [weatherData]="data"
+        [dateFilter]="selectedDate"
+      ></app-chart>
+    </div>
+  </div>
+
+</div>
+

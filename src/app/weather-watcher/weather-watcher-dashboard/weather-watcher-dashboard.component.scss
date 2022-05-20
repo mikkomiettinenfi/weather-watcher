@@ -1,0 +1,59 @@
+
+.chart-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  color: #333333;
+  flex-wrap: wrap;
+  .chart-control {
+    background-color: #24292e;
+    margin: 10px;
+    .mat-select {
+      background-color: #303030;
+    }
+    ::ng-deep .mat-form-field-wrapper {
+      background-color: #303030;
+      .mat-form-field-flex {
+        background-color: #303030;
+      }
+    }
+  }
+}
+
+.main-chart {
+  margin: 10px;
+  app-chart {
+    ::ng-deep .highcharts-container {
+      width: 100% !important;
+      svg {
+        display: flex;
+        flex-direction: row;
+        align-items: stretch;
+        justify-content: stretch;
+        width: 100%;
+      }
+    }
+  }
+}
+
+.dashboard {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  .dashboard-chart-container {
+    display: flex;
+    flex: 1 1 260px;
+    justify-content: space-evenly;
+    margin: 10px;
+    app-chart {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      max-width: 400px;
+      min-width: 260px;
+      min-height: 300px;
+    }
+  }
+}
+

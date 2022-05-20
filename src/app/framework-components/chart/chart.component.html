@@ -1,0 +1,50 @@
+<div class="chart-container">
+<div>
+  <div class="chart-header">
+    {{ weatherData?.name || 'Combined data' }}
+    <button *ngIf="!weatherDataArray" mat-icon-button color="success"
+            [matMenuTriggerFor]="menu">
+      <mat-icon>palette</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <div *ngIf="!weatherDataArray" class="sliders">
+        <mat-slider min="0" max="255" step="1" class="red"
+                    [(ngModel)]="lineRed"
+                    (click) ="stopPropagation($event)"
+                    (change)="lineColorChangeForSingle()"></mat-slider>
+        <mat-slider min="0" max="255" step="1" class="green"
+                    [(ngModel)]="lineGreen"
+                    (click) ="stopPropagation($event)"
+                    (change)="lineColorChangeForSingle()"></mat-slider>
+        <mat-slider min="0" max="255" step="1" class="blue"
+                    [(ngModel)]="lineBlue"
+                    (click) ="stopPropagation($event)"
+                    (change)="lineColorChangeForSingle()"></mat-slider>
+      </div>
+    </mat-menu>
+  </div>
+  <div>
+    <div>
+    </div>
+    <highcharts-chart
+      [Highcharts]="Highcharts"
+      [options]="!!dateFilter ? chartOptionsFiltered : chartOptions"
+      [(update)]="updateChart"
+      [oneToOne]="true"
+      style="width: 100%; height: max-content; display: block; overflow: hidden;"
+    ></highcharts-chart>
+
+    <div *ngIf="!weatherDataArray" class="chart-controls">
+      <p>
+        <mat-button-toggle-group
+          [(ngModel)]="chartType"
+          (ngModelChange)="ngModelChange()">
+          <mat-button-toggle value="line">Line</mat-button-toggle>
+          <mat-button-toggle value="area">Area</mat-button-toggle>
+          <mat-button-toggle value="bar">Bar</mat-button-toggle>
+        </mat-button-toggle-group>
+      </p>
+    </div>
+  </div>
+</div>
+</div>

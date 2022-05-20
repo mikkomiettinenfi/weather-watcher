@@ -1,0 +1,27 @@
+<mat-toolbar>
+  <mat-icon *ngIf="isMobile" (click)="toggleNav()">menu</mat-icon>
+  <span>Weather Charts</span>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="over" [(opened)]="opened">
+    <button mat-button class="menu-button" routerLink="">
+      <mat-icon>home</mat-icon>
+      <span>Home</span>
+    </button>
+    <button mat-button class="menu-button" routerLink="/weather-watcher">
+      <mat-icon>area_chart</mat-icon>
+      <span>Charts</span>
+    </button>
+    <button mat-button class="menu-button" routerLink="about">
+      <mat-icon>info</mat-icon>
+      <span>About</span>
+    </button>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-sidenav-content>
+</mat-sidenav-container>
